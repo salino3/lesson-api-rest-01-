@@ -93,3 +93,10 @@ interface IReview {
   reviewer_name: string;
   comments: string;
 }
+
+export interface Property {
+  property: {
+    reviews: IReview[];
+    _id: string;
+  };
+}

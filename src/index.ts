@@ -8,6 +8,7 @@ import {
 } from '#common/middlewares/index.js';
 import { createRestApiServer, connectToDBServer } from '#core/servers/index.js';
 import { envConstants } from '#core/constants/index.js';
+import { listingsRouter } from '#routes/listing.js';
 
 const restApiServer = createRestApiServer();
 
@@ -18,6 +19,8 @@ restApiServer.use('/', express.static(staticFilesPath));
 restApiServer.use(logRequestMiddleware);
 
 restApiServer.use(logErrorRequestMiddleware);
+
+restApiServer.use('/api', listingsRouter);
 
 restApiServer.listen(envConstants.PORT, async () => {
   if (!envConstants.isApiMock) {
