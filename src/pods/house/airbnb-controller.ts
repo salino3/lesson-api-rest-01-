@@ -14,12 +14,12 @@ export const getAllLimitFive = async (req: Request, res: Response) => {
     const pageSize = Number(req.query.pageSize);
     const properties = getPaginationList(items, page, pageSize);
 
-    // const propertiesWithLastFiveReviews = properties.map((property) => ({
-    //   ...property.toObject(),
-    //   reviews: property.reviews.slice(-5),
-    // }));
-
-    const mappedProperties = properties.map((property) =>
+    const propertiesWithLastFiveReviews = properties.map((property) => ({
+      ...property.toObject(),
+      reviews: property.reviews.slice(-5),
+    }));
+    console.log('propertiesWithLastFiveReviews'), propertiesWithLastFiveReviews;
+    const mappedProperties = propertiesWithLastFiveReviews.map((property) =>
       mapAirbnbFromApiToModel(property)
     );
 
